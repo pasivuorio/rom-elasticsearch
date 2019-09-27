@@ -19,6 +19,25 @@ Resources:
 - [User Documentation](http://rom-rb.org/learn/elasticsearch/)
 - [API Documentation](http://rubydoc.info/gems/rom-elasticsearch)
 
+Changes in this fork:
+- Gemspec updated to support latest elasticsearch gems (7.x)
+- Possibility to initialize gateway with existing elasticsearch client / http libraries
+
+```ruby
+transport_options = {request: { timeout: 60 }} # faraday request timeout, in seconds
+host = ENV['ELASTICSEARCH_URL'] ? ENV['ELASTICSEARCH_URL'] : "localhost"
+port = ENV['ELASTICSEARCH_PORT'] ? ENV['ELASTICSEARCH_PORT'] : 9200
+client = Elasticsearch::Client.new transport_options: transport_options, host: host, port: port, retry_on_failure: true, log: false, trace: false do |f|
+  f.use Faraday::Request::Multipart
+  f.use Faraday::Request::UrlEncoded
+  f.use Faraday::Response::RaiseError
+
+  f.adapter  :typhoeus
+end
+
+conf = ROM::Configuration.new(:elasticsearch, client)
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
