@@ -381,7 +381,10 @@ module ROM
         { index: name.dataset.to_sym,
           body: {
             settings: self.class.index_settings,
-            mappings: { dataset.type => { properties: schema.to_properties } } } }
+            mappings: {
+                properties: schema.to_properties.merge({"type": {type: "keyword"}}) }
+            }
+        }
       end
     end
   end
