@@ -30,6 +30,15 @@ module ROM
       def self.Text(meta = {})
         String.meta(type: 'text', **meta)
       end
+
+      # Define a keyword attribute type
+      #
+      # @return [Dry::Types::Type]
+      #
+      # @api public
+      def self.Decimal(scaling_factor=100)
+        Decimal.meta(type: 'scaled_float',scaling_factor: scaling_factor)
+      end
     end
   end
 end

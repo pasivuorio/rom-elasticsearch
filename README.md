@@ -20,7 +20,9 @@ Resources:
 - [API Documentation](http://rubydoc.info/gems/rom-elasticsearch)
 
 Changes in this fork:
-- Gemspec updated to support latest elasticsearch gems (7.x)
+- Gemspec updated to support latest elasticsearch gems and servers (7.x) 
+- New scaled_float type to support e.g.money fields
+- Removes the use of types in indexes https://www.elastic.co/guide/en/elasticsearch/reference/current/removal-of-types.html
 - Possibility to initialize gateway with existing elasticsearch client / http libraries
 
 ```ruby
