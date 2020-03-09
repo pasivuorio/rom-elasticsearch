@@ -270,6 +270,17 @@ module ROM
         new(dataset.query(query))
       end
 
+      def where(options)
+
+        filters = []
+        options.each do |key, value|
+
+          filters << {term: {key=>value}}
+        end
+
+        query(bool: {filter:filters })
+      end
+
       # Restrict relation data by a string-based query
       #
       # @example
