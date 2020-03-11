@@ -78,7 +78,7 @@ module ROM
       #
       # @api public
       def put(data)
-        client.index(**params, body: data)
+        client.index(**params, body: Oj.dump(data, {mode: :wab, omit_nil:true}))
       end
 
       # Return index settings
