@@ -278,7 +278,10 @@ module ROM
           filters << {term: {key=>value}}
         end
 
-        query(bool: {filter:filters })
+        query(bool: {
+                  must: {match_all: {}},
+                  filter:filters
+        })
       end
 
       # Restrict relation data by a string-based query
