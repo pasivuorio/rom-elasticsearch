@@ -275,7 +275,7 @@ module ROM
         filters = []
         options.each do |key, value|
 
-          filters << {term: {key=>value}}
+          filters << {term: {"#{key}.keyword"=>value}}
         end
 
         query(bool: {
