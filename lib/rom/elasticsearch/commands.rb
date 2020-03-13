@@ -22,7 +22,8 @@ module ROM
             else
               dataset.put(tuple)
             end
-          [relation.get(result['_id']).one]
+          [tuple]
+          #[relation.get(result['_id']).one]
         end
 
         private
